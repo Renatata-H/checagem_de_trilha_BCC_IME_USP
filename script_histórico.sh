@@ -34,8 +34,8 @@ printf "Digite o nome do arquivo de histórico escolar (sem .pdf): "
 read nome_do_arquivo
 nome_do_arquivo="./"$nome_do_arquivo
 
-pdftotext -f 2 $nome_do_arquivo".pdf"					# Cria-se o arquivo em .txt, a partir da segunda página.
-#printf "\nFIM" >> $nome_do_arquivo".txt"				# Coloca-se a flag "FIM" ao fim. Necessário?
+pdftotext -f 2 $nome_do_arquivo".pdf"		# Cria-se o arquivo em .txt, a partir da segunda página.
+#printf "\nFIM" >> $nome_do_arquivo".txt"	# Coloca-se a flag "FIM" ao fim. Necessário?
 
 # Índices para as listas "lista_disciplinas" e "lista_status"
 i=0
@@ -45,7 +45,7 @@ j=0
 while read -r linha; do
 
 	# Pega nomes das disciplinas
-	if [ ${#linha} -eq 7 ]; then 						# Nota: precisa conferir se as primeiras letras são siglas?
+	if [ ${#linha} -eq 7 ]; then 		# Nota: precisa conferir se as primeiras letras são siglas?
 		lista_disciplinas["${i}"]="$linha"
 		i=$i+1;
 	fi
@@ -68,7 +68,8 @@ while read -r linha; do
 	fi
 	
 done < $nome_do_arquivo".txt"
-rm -f $ $nome_do_arquivo".txt"						# No final do laço, remove-se o .txt, pois não será mais necessário.
+# No final do laço, remove-se o .txt, pois não será mais necessário.
+rm -f $ $nome_do_arquivo".txt"		
 
 
 
