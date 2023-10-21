@@ -36,6 +36,7 @@ que aparecem no histórico escolar original, as matérias cursadas. O status de 
 aluno também será informado.
 
 /* Possíveis status:
+
  		MA - Matriculado;
   		A - Aprovado;
   		T - Trancado;
