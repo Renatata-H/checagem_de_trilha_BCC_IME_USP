@@ -5,9 +5,9 @@
 
 # COMO EXECUTAR:
     Abra no terminal o diretório em que se encontra o programa verifica_trilha.sh utilizando:
-		cd [caminho até o diretório]
+> 		 cd [caminho até o diretório]
 	e depois execute o comando:
-		bash verifica_trilha.sh
+> 		bash verifica_trilha.sh
 
     Certifique-se de que o arquivo do histórico escolar a ser analisado esteja também nesse mesmo
     diretório.
@@ -24,7 +24,7 @@
     Caso você queira ser informado das matérias cursadas pelo aluno ao longo da graduação, incluindo
     o status dessas matérias* no momento atual, digite um argumento qualquer na linha de comando, como "oi".
     Exemplo:
-        bash verifica_trilha.sh oi
+> 	bash verifica_trilha.sh oi
 
     Prossiga normalmente, como anteriormente explicado. Quando a saída for gerada, apararecerão, na ordem em
     que aparecem no histórico escolar original, as matérias cursadas. O status de completude das trilhas pelo 
