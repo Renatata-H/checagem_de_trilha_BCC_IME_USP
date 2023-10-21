@@ -71,8 +71,8 @@ while read -r linha; do
 rm -f $ $nome_do_arquivo".txt"						# No final do laço, remove-se o .txt, pois não será mais necessário.
 
 # Apenas para depuração
-echo "${lista_disciplinas[*]}"
-echo "${lista_status[*]}"
+#echo "${lista_disciplinas[*]}"
+#echo "${lista_status[*]}"
 
 quantidade_disciplinas="$((${#lista_disciplinas[@]}-1))"
 sistemas=("0" "0" "0")	# Desenvolvimento de software, sistemas paralelos e banco de dados --> (2, 2, 1) + 2 --> SOMA: 7
@@ -92,8 +92,8 @@ while [ $i -le $quantidade_disciplinas ]; do
 		#printf $nome_disciplina" "
 		#printf $status_disciplina"\n"
 		codigo_disciplina="${nome_disciplina:3:4}"
-		printf $codigo_disciplina
-
+		#printf $codigo_disciplina
+		
 		############ MAE
 		if [ "${nome_disciplina:0:3}" = "MAE" ]; then
 			
@@ -129,8 +129,6 @@ while [ $i -le $quantidade_disciplinas ]; do
 				teoriaOPT[2]="$((${teoriaOPT[2]}+1))"
 			fi
 
-
-
 		############ MAT
 		elif [ "${nome_disciplina:0:3}" = "MAT" ]; then
 			
@@ -139,7 +137,7 @@ while [ $i -le $quantidade_disciplinas ]; do
 				ia[3]="$((${ia[3]}+1))"	
 
 			# MAT0206 - Análise Real	
-			if [ "$codigo_disciplina" = "0206" ]; then
+			elif [ "$codigo_disciplina" = "0206" ]; then
 				teoriaOBR[2]="$((${teoriaOBR[2]]}+1))"	
 
 			# MAT0264 - Anéis e Corpos
@@ -163,8 +161,7 @@ while [ $i -le $quantidade_disciplinas ]; do
 				teoriaOPT[2]="$((${teoriaOPT[2]]}+1))"	
 
 			fi
-
-
+		
 		############ MAC
 		elif [ "${nome_disciplina:0:3}" = "MAC" ]; then
 			
@@ -321,16 +318,57 @@ while [ $i -le $quantidade_disciplinas ]; do
 
 			# MAC0436 - Tópicos de Matemática Discreta I
 			elif [ "$codigo_disciplina" = "0436" ]; then
-				teoriaOBR[2]="$((${teoriaOBR[2]}+1))"
+				teoriaOPT[2]="$((${teoriaOPT[2]}+1))"
+
+			# MAC0690 - Tópicos em Combinatória Contemporânea I
+			elif [ "$codigo_disciplina" = "0690" ]; then
+				teoriaOPT[2]="$((${teoriaOPT[2]}+1))"
+
+			# MAC0691 - Tópicos na Teoria Algébrica dos Grafos
+			elif [ "$codigo_disciplina" = "0690" ]; then
+				teoriaOPT[2]="$((${teoriaOPT[2]}+1))"
+			
+			# MAC0775 - Métodos Probabilísticos em Combinatória e em Teoria da Computação I
+			elif [ "$codigo_disciplina" = "0775" ]; then
+				teoriaOPT[2]="$((${teoriaOPT[2]}+1))"
+
+			# MAC0776 - Métodos Probabilísticos em Combinatória e em Teoria da Computação II
+			elif [ "$codigo_disciplina" = "0775" ]; then
+				teoriaOPT[2]="$((${teoriaOPT[2]}+1))"
 			fi
 
 		fi
+
 	fi
 
 	#printf ${lista_disciplinas[${i}]}" "
-	((i+=1));
+	i="$(($i+1))";
 done
 
+if [ "${sistemas[0]}" -ge 2 ] && [ "${sistemas[1]}" -ge 2 ] && [ "${sistemas[2]}" -ge 1 ] && [ $((${sistemas[0]}+${sistemas[1]}+${sistemas[2]})) -ge 7 ]; then
+	printf "O aluno fez a trilha de Sistemas de Software\n"
+else
+	printf "O aluno não fez a trilha de Sistemas de Software\n"
+fi
 
+if [ "${ia[0]}" -ge 1 ] && [ "${ia[1]}" -ge 2 ] && [ "${ia[2]}" -ge 2 ] && [ "${ia[3]}" -ge 1 ]; then
+	printf "O aluno fez a trilha de Inteligência Artificial\n"
+else
+	printf "O aluno não fez a trilha de Inteligência Artificial\n"
+fi
 
+if [ "${dados[0]}" -ge 4 ] && [ "${dados[1]}" -ge 1 ] && [ "${dados[2]}" -ge 1 ] && [ "${dados[3]}" -ge 1 ]; then
+	printf "O aluno fez a trilha de Ciência de Dados\n"
+else
+	printf "O aluno não fez a trilha de Ciência de Dados\n"
+fi
 
+if [ "${teoriaOBR[0]}" -ge 2 -a "${teoriaOBR[1]}" -ge 2 ] || [ "${teoriaOBR[1]}" -ge 2 -a "${teoriaOBR[2]}" -ge 3 ] || [ "${teoriaOBR[0]}" -ge 2 -a "${teoriaOBR[2]}" -ge 3 ]; then
+	if [ $((${teoriaOBR[0]}+${teoriaOBR[1]}+${teoriaOBR[2]}+${teoriaOPT[0]}+${teoriaOPT[1]}+${teoriaOPT[2]})) -ge 7 ]; then
+		printf "O aluno fez a trilha de Teoria da Computação\n"
+	else
+		printf "O aluno não fez a trilha de Teoria da Computação\n"
+	fi
+else
+	printf "O aluno não fez a trilha de Teoria da Computação\n"
+fi
