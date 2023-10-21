@@ -1,9 +1,9 @@
-DESCRIÇÃO:
+#DESCRIÇÃO:
     O propósito desse programa é verificar se, dado o hitórico escolar de um discente, os requesitos 
     necessários para completar uma trilha do curso de Bacharelado em Ciência da Computação do Instituto 
     de Matemática e Estatística da Universidade de São Paulo, currículo em vigor em 2023, foram cumpridos.
 
-COMO EXECUTAR:
+#COMO EXECUTAR:
     Abra no terminal o diretório em que se encontra o programa verifica_trilha.sh utilizando:
 		cd [caminho até o diretório]
 	e depois execute o comando:
@@ -47,7 +47,7 @@ COMO EXECUTAR:
                         DS - Dispensado por prova de suficiência (Res. CoG 4844/01)
 
 
-DEPENDÊNCIAS:
+#DEPENDÊNCIAS:
     GNU bash, versão 5.1.16(1)-release (x86_64-pc-linux-gnu) ou superior.
 
     Informações adicionais da máquina onde os programas foram criados e executados originalmente:
