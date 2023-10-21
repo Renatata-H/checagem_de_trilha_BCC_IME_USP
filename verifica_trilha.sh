@@ -20,7 +20,7 @@ eh_status () {
 		frase="$frase "
 	fi
 	
-	if [ "${frase:0:2}" = "MA" ] || [ "${frase:0:2}" = " A" ] || [ "${frase:0:2}" = "P " ] || [ "${frase:0:2}" = "T " ] || [ "${frase:0:2}" = "I " ] || [ "${frase:0:2}" = "IP" ] || [ "${frase:0:2}" = "IR" ] || [ "${frase:0:2}" = "IT" ] || [ "${frase:0:2}" = "IL" ] || [ "${frase:0:2}" = "RA" ] || [ "${frase:0:2}" = "RN" ] || [ "${frase:0:2}" = "RF" ] || [ "${frase:0:2}" = "AE" ] || [ "${frase:0:2}" = "DI" ]; then
+	if [ "${frase:0:2}" = "MA" ] || [ "${frase:0:2}" = " A" ] || [ "${frase:0:2}" = "P " ] || [ "${frase:0:2}" = "T " ] || [ "${frase:0:2}" = "I " ] || [ "${frase:0:2}" = "IP" ] || [ "${frase:0:2}" = "IR" ] || [ "${frase:0:2}" = "IT" ] || [ "${frase:0:2}" = "IL" ] || [ "${frase:0:2}" = "RA" ] || [ "${frase:0:2}" = "RN" ] || [ "${frase:0:2}" = "RF" ] || [ "${frase:0:2}" = "AE" ] || [ "${frase:0:2}" = "DI" ] || [ "${frase:0:2}" = "DS" ]; then
 	 	status=0
 	fi
 	
