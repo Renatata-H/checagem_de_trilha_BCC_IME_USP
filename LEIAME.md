@@ -56,6 +56,11 @@ aluno também será informado.
 
 # DEPENDÊNCIAS:
 GNU bash, versão 5.1.16(1)-release (x86_64-pc-linux-gnu) ou superior.
+Poppler utils, versão 22.02.0 ou superior.
+
+Para instalar poppler-utils via terminal-Linux:
+	
+ 	sudo apt install poppler-utils
 
 Informações adicionais da máquina onde os programas foram criados e executados originalmente:
 
