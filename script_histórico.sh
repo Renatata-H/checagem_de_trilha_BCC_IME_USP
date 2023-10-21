@@ -34,7 +34,7 @@ printf "Digite o nome do arquivo de histórico escolar (sem .pdf): "
 read nome_do_arquivo
 nome_do_arquivo="./"$nome_do_arquivo
 
-pdftotext -f 2 $nome_do_arquivo".pdf"					# Cria-se o arquivo em .txt, a partir da segunda página.
+pdftotext -f 2 $nome_do_arquivo".pdf"				# Cria-se o arquivo em .txt, a partir da segunda página.
 
 # Índices para as listas "lista_disciplinas" e "lista_status"
 i=0
@@ -83,11 +83,11 @@ sistemas=("0" "0" "0")		# Final: (2, 2, 1) + 2. SOMA: 7
 ia=("0" "0" "0" "0") 		# Final: (1, 2, 2, 1). SOMA: 6
 
 # CIÊNCIAS DE DADOS: Núcleos 1, 2, 3 e 4
-dados=("0" "0" "0" "0") # Final (4, 1, 1, 1). SOMA: 7
+dados=("0" "0" "0" "0") 	# Final (4, 1, 1, 1). SOMA: 7
 
 # TEORIA DA COMPUTAÇÃO: Algoritmos, otimização e matemática discreta
-teoriaOBR=("0" "0" "0") # Final (obrigatório): (2, 2, 3)
-teoriaOPT=("0" "0" "0") # SOMA: 7
+teoriaOBR=("0" "0" "0") 	# Final (obrigatório): (2, 2, 3)
+teoriaOPT=("0" "0" "0") 	# SOMA: 7
 
 i=0
 while [ $i -le $quantidade_disciplinas ]; do
@@ -347,7 +347,6 @@ while [ $i -le $quantidade_disciplinas ]; do
 
 	fi
 
-	#$# = 0
 	if [ ! -z $1 ]; then
 		printf $nome_disciplina" - "$status_disciplina"\n"
 	fi
