@@ -31,7 +31,7 @@ Prossiga normalmente, como anteriormente explicado. Quando a saída for gerada, 
 que aparecem no histórico escolar original, as matérias cursadas. O status de completude das trilhas pelo 
 aluno também será informado.
 
-* Possíveis status:
+/* Possíveis status:
  		MA - Matriculado;
   		A - Aprovado;
   		T - Trancado;
