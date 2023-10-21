@@ -14,6 +14,7 @@ diretório.
 
 Após isso, aparecerá abaixo a seguinte frase:
 >	Digite o nome do arquivo de histórico escolar (sem .pdf):
+
 Insira, então, apenas o nome do arquivo de histórico escolar a ser analisado, sem colocar a extensão
 .pdf ao final e sem informar o caminho até o arquivo. Quando você  acabar de escrever o nome, 
 pressione a tecla ENTER para enviar o nome ao programa.
