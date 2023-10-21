@@ -11,6 +11,7 @@
 # ${var:pos:N} retorna N caracteres de pos para frente
 #
 # POSSIVEIS STATUS: MA, A, P, T, I, IP, IR, IT, IL RA, RN, RF, AE
+# PROGRAMAÇÃO ORIENTADA A GAMBIARRA
 
 eh_status () {
 	local frase=$1
@@ -51,7 +52,12 @@ while read -r linha; do
 	fi
 	
 	# Pega o status das disciplinas
-	status=$(eh_status "${linha:${#linha}-2:2}") 
+	if [ ${#linha} -gt 1 ]; then
+		status=$(eh_status "${linha:${#linha}-2:2}") 
+	else
+		status=$(eh_status "$linha") 
+	fi
+
 	if [ $status -eq 0 ]; then
 		
 		if [ ${#linha} -eq 1 ]; then
@@ -75,6 +81,7 @@ rm -f $ $nome_do_arquivo".txt"						# No final do laço, remove-se o .txt, pois 
 #echo "${lista_status[*]}"
 
 quantidade_disciplinas="$((${#lista_disciplinas[@]}-1))"
+
 sistemas=("0" "0" "0")	# Desenvolvimento de software, sistemas paralelos e banco de dados --> (2, 2, 1) + 2 --> SOMA: 7
 ia=("0" "0" "0" "0") # IA, introdução à IA, sistemas, teoria --> (1, 2, 2, 1) --> SOMA: 6
 dados=("0" "0" "0" "0") # Nucleos 1, 2, 3, 4 --> (4, 1, 1, 1) --> SOMA: 7
@@ -89,10 +96,7 @@ while [ $i -le $quantidade_disciplinas ]; do
 
 	if [ "$status_disciplina" = "A" ] || [ "$status_disciplina" = "AE" ]; then	# Seria DI válido também?
 
-		#printf $nome_disciplina" "
-		#printf $status_disciplina"\n"
 		codigo_disciplina="${nome_disciplina:3:4}"
-		#printf $codigo_disciplina
 		
 		############ MAE
 		if [ "${nome_disciplina:0:3}" = "MAE" ]; then
@@ -145,7 +149,7 @@ while [ $i -le $quantidade_disciplinas ]; do
 				teoriaOBR[2]="$((${teoriaOBR[2]]}+1))"	
 
 			# MAT0225 - Funções Analíticas
-			elif [ "$codigo_disciplina" = "0264" ]; then
+			elif [ "$codigo_disciplina" = "0225" ]; then
 				teoriaOPT[2]="$((${teoriaOPT[2]]}+1))"	
 
 			# MAT0234 - Medida e Integração
@@ -153,7 +157,7 @@ while [ $i -le $quantidade_disciplinas ]; do
 				teoriaOPT[2]="$((${teoriaOPT[2]]}+1))"	
 
 			# MAT0265 - Grupos
-			elif [ "$codigo_disciplina" = "0234" ]; then
+			elif [ "$codigo_disciplina" = "0265" ]; then
 				teoriaOPT[2]="$((${teoriaOPT[2]]}+1))"	
 
 			# MAT0311 - Cálculo Diferencial e Integral V
@@ -166,7 +170,7 @@ while [ $i -le $quantidade_disciplinas ]; do
 		elif [ "${nome_disciplina:0:3}" = "MAC" ]; then
 			
 			# MAC0218 - Técnicas de Programação II
-			if [ "$codigo_disciplina" = "0349" ]; then
+			if [ "$codigo_disciplina" = "0218" ]; then
 				sistemas[0]="$((${sistemas[0]}+1))"
 				ia[2]="$((${ia[2]}+1))"
 			
@@ -325,7 +329,7 @@ while [ $i -le $quantidade_disciplinas ]; do
 				teoriaOPT[2]="$((${teoriaOPT[2]}+1))"
 
 			# MAC0691 - Tópicos na Teoria Algébrica dos Grafos
-			elif [ "$codigo_disciplina" = "0690" ]; then
+			elif [ "$codigo_disciplina" = "0691" ]; then
 				teoriaOPT[2]="$((${teoriaOPT[2]}+1))"
 			
 			# MAC0775 - Métodos Probabilísticos em Combinatória e em Teoria da Computação I
@@ -333,7 +337,7 @@ while [ $i -le $quantidade_disciplinas ]; do
 				teoriaOPT[2]="$((${teoriaOPT[2]}+1))"
 
 			# MAC0776 - Métodos Probabilísticos em Combinatória e em Teoria da Computação II
-			elif [ "$codigo_disciplina" = "0775" ]; then
+			elif [ "$codigo_disciplina" = "0776" ]; then
 				teoriaOPT[2]="$((${teoriaOPT[2]}+1))"
 			fi
 
@@ -372,3 +376,6 @@ if [ "${teoriaOBR[0]}" -ge 2 -a "${teoriaOBR[1]}" -ge 2 ] || [ "${teoriaOBR[1]}"
 else
 	printf "O aluno não fez a trilha de Teoria da Computação\n"
 fi
+
+
+
