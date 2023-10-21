@@ -50,10 +50,10 @@ aluno também será informado.
 
 
 # DEPENDÊNCIAS:
-    GNU bash, versão 5.1.16(1)-release (x86_64-pc-linux-gnu) ou superior.
+GNU bash, versão 5.1.16(1)-release (x86_64-pc-linux-gnu) ou superior.
 
-    Informações adicionais da máquina onde os programas foram criados e executados originalmente:
-		Versão do sistema operacional: Ubuntu 22.04.2 LTS;
-		Arquitetura da máquina: x86_64;
-		Processador: Intel® Core™ i3-7100U CPU @ 2.40GHz × 4;
-		Memória RAM: 12,0 GiB.
+Informações adicionais da máquina onde os programas foram criados e executados originalmente:
+	Versão do sistema operacional: Ubuntu 22.04.2 LTS;
+	Arquitetura da máquina: x86_64;
+	Processador: Intel® Core™ i3-7100U CPU @ 2.40GHz × 4;
+	Memória RAM: 12,0 GiB.
