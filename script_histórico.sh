@@ -1,19 +1,18 @@
 #!/bin/bash
-# Bashscript
-# Comando para converter pdf para text: pdftotext -f 2 ./NOMEDODOCUMENTO.pdf
-# (https://www.youtube.com/watch?v=ChbDOb6390A)
-#
-# Todas as siglas de disciplinas se encontram na linha 35 (incluso) em diante.
-# As linhas de matérias - inicia-se com 3 letras maiúsculas seguidas; não vale se começar com HIS, ATP, FRE ou NOT.
-# Comando para colocar indicador de fim do arquivo: printf "\nEOF" >> ./NOMEDODOCOUMENTO.txt
-#
-# ${#var} retorna o comprimento de var
-# ${var:pos:N} retorna N caracteres de pos para frente
-#
-# POSSIVEIS STATUS: MA, A, P, T, I, IP, IR, IT, IL RA, RN, RF, AE
 # PROGRAMAÇÃO ORIENTADA A GAMBIARRA
+#
+# Este programa procura verificar se, dado um histórico escolar USP, o aluno
+# completou alguma trilha do curso BCC-IME, dentre as seguintes:
+#
+# --> Sistemas de Software
+# --> Inteligência Artificial
+# --> Ciência de Dados
+# --> Teoria da Computação
 
 eh_status () {
+	# Dado uma string de dois ou menos caracteres, decide se são
+	# um dos "status" da legenda do arquivo.
+
 	local frase=$1
 	local status=1
 	
@@ -36,7 +35,6 @@ read nome_do_arquivo
 nome_do_arquivo="./"$nome_do_arquivo
 
 pdftotext -f 2 $nome_do_arquivo".pdf"					# Cria-se o arquivo em .txt, a partir da segunda página.
-#printf "\nFIM" >> $nome_do_arquivo".txt"				# Coloca-se a flag "FIM" ao fim. Necessário?
 
 # Índices para as listas "lista_disciplinas" e "lista_status"
 i=0
@@ -76,17 +74,20 @@ while read -r linha; do
 	done < $nome_do_arquivo".txt"
 rm -f $ $nome_do_arquivo".txt"						# No final do laço, remove-se o .txt, pois não será mais necessário.
 
-# Apenas para depuração
-#echo "${lista_disciplinas[*]}"
-#echo "${lista_status[*]}"
-
 quantidade_disciplinas="$((${#lista_disciplinas[@]}-1))"
 
-sistemas=("0" "0" "0")	# Desenvolvimento de software, sistemas paralelos e banco de dados --> (2, 2, 1) + 2 --> SOMA: 7
-ia=("0" "0" "0" "0") # IA, introdução à IA, sistemas, teoria --> (1, 2, 2, 1) --> SOMA: 6
-dados=("0" "0" "0" "0") # Nucleos 1, 2, 3, 4 --> (4, 1, 1, 1) --> SOMA: 7
-teoriaOBR=("0" "0" "0") # Algoritmos, otimização, matemática discreta --> (2, 2, 3) --> SOMA 7 ****** área esquisita
-teoriaOPT=("0" "0" "0") # Os "II".
+# SISTEMAS DE SOFTWARE: Desenvolvimento de software, sistemas paralelos e banco de dados
+sistemas=("0" "0" "0")		# Final: (2, 2, 1) + 2. SOMA: 7
+
+# INTELIGÊNCIA ARTIFICAL: IA, introdução à IA, sistemas e teoria
+ia=("0" "0" "0" "0") 		# Final: (1, 2, 2, 1). SOMA: 6
+
+# CIÊNCIAS DE DADOS: Núcleos 1, 2, 3 e 4
+dados=("0" "0" "0" "0") # Final (4, 1, 1, 1). SOMA: 7
+
+# TEORIA DA COMPUTAÇÃO: Algoritmos, otimização e matemática discreta
+teoriaOBR=("0" "0" "0") # Final (obrigatório): (2, 2, 3)
+teoriaOPT=("0" "0" "0") # SOMA: 7
 
 i=0
 while [ $i -le $quantidade_disciplinas ]; do
@@ -94,11 +95,12 @@ while [ $i -le $quantidade_disciplinas ]; do
 	nome_disciplina="${lista_disciplinas[${i}]}"
 	status_disciplina="${lista_status[${i}]}"
 
-	if [ "$status_disciplina" = "A" ] || [ "$status_disciplina" = "AE" ]; then	# Seria DI válido também?
+	if [ "$status_disciplina" = "A" ] || [ "$status_disciplina" = "AE" ]; then	
+	# Seria DI (dispensado) válido também?
 
 		codigo_disciplina="${nome_disciplina:3:4}"
 		
-		############ MAE
+		############ MAE - DEPARTAMENTO DE ESTATÍSTICA
 		if [ "${nome_disciplina:0:3}" = "MAE" ]; then
 			
 			# MAE0221 - Probabilidade I
@@ -133,7 +135,7 @@ while [ $i -le $quantidade_disciplinas ]; do
 				teoriaOPT[2]="$((${teoriaOPT[2]}+1))"
 			fi
 
-		############ MAT
+		############ MAT - DEPARTAMENTO DE MATEMÁTICA
 		elif [ "${nome_disciplina:0:3}" = "MAT" ]; then
 			
 			# MAT0349 - Introdução à Lógica
@@ -166,7 +168,7 @@ while [ $i -le $quantidade_disciplinas ]; do
 
 			fi
 		
-		############ MAC
+		############ MAC - DEPARTAMENTO DE COMPUTAÇÃO
 		elif [ "${nome_disciplina:0:3}" = "MAC" ]; then
 			
 			# MAC0218 - Técnicas de Programação II
@@ -345,7 +347,11 @@ while [ $i -le $quantidade_disciplinas ]; do
 
 	fi
 
-	#printf ${lista_disciplinas[${i}]}" "
+	#$# = 0
+	if [ ! -z $1 ]; then
+		printf $nome_disciplina" - "$status_disciplina"\n"
+	fi
+
 	i="$(($i+1))";
 done
 
@@ -376,6 +382,3 @@ if [ "${teoriaOBR[0]}" -ge 2 -a "${teoriaOBR[1]}" -ge 2 ] || [ "${teoriaOBR[1]}"
 else
 	printf "O aluno não fez a trilha de Teoria da Computação\n"
 fi
-
-
-
