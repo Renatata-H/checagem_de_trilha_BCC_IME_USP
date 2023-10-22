@@ -44,7 +44,7 @@ j=0
 while read -r linha; do
 
 	# Pega nomes das disciplinas
-	if [ ${#linha} -eq 7 ] && [ "[" \> "${linha:0:1}" ] && [ "@" \< "${linha:1:1}" ]; then 						# Nota: precisa conferir se as primeiras letras são siglas?
+	if [ ${#linha} -eq 7 ] && [ "[" \> "${linha:0:1}" ] && [ "@" \< "${linha:0:1}" ]; then 						# Nota: precisa conferir se as primeiras letras são siglas?
 		lista_disciplinas["${i}"]="$linha"
 		i=$i+1;
 	fi
